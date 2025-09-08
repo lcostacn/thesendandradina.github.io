@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <!-- Meta viewport ESSENCIAL para responsividade -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caravana The Send 2026</title>
+    <style>
+        /* ======= ESTILO BÁSICO ======= */
+        * {
+            box-sizing: border-box; /* Garante que padding não some à width */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #222;
+            color: #fff;
+        }
+
+        header {
+            background: #000;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ecfd02;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            flex-wrap: wrap; /* Permite quebra em telas pequenas */
+            /* Alinha itens no centro vertical e horizontalmente quando quebram */
+            align-content: center;
+        }
+
+        .logo-left, .logo-right {
+            width: 80px;
+            height: auto;
+            margin: 5px 0;
+        }
+
+        .header-title {
+            font-size: 1.5em;
+            text-align: center;
+            flex-grow: 1;
+            margin: 5px 15px; /* Margem lateral para não colar nas logos */
+            order: 2; /* Coloca o título no meio na ordem de exibição */
+            width: 100%; /* Força quebra de linha em mobile */
+        }
+
+        /* Container principal */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        main h2 {
+            text-align: center;
+            margin-top: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        main p {
+            text-align: justify;
+            line-height: 1.6;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        /* ======= BOXES ======= */
+        .box, .box-valor, .box-whatsapp, .etapa-box, .box.video-container, .inscricao, .box-atencao, .box-local {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 3px solid #ffcc00;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .box:hover, .box-valor:hover, .box-whatsapp:hover, .etapa-box:hover, .box.video-container:hover, .inscricao:hover, .box-atencao:hover, .box-local:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.4);
+        }
+
+        .box h2, .box-valor h2, .box-whatsapp h2, .box-atencao h2, .box-local h2, .etapa-box h3 {
+            color: #ffcc00;
+            margin-top: 0;
+        }
+
+        .valor-principal {
+            font-size: 2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #ffcc00;
+            text-align: center;
+        }
+
+        .condicoes-lista p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        /* ======= VÍDEO RESPONSIVO ======= */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* ======= INSCRIÇÃO ======= */
+        .inscricao {
+            display: flex;
+            flex-wrap: wrap; /* Permite quebra */
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .inscricao-texto, .inscricao-imagem {
+            flex: 1 1 300px; /* Cresce, encolhe, base de 300px */
+            min-width: 0; /* Permite que o item encolha abaixo de 300px */
+        }
+
+        .inscricao-imagem img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block; /* Remove espaço fantasma abaixo da imagem */
+        }
+
+        /* ======= ETAPAS EM COLUNAS FLEXÍVEIS ======= */
+        .etapas {
+            display: flex;
+            flex-wrap: wrap; /* PERMITE QUEBRA - Isso é crucial */
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .etapa-box {
+            flex: 1 1 250px; /* Base de 250px, mas pode crescer e encolher */
+            /* max-width: 100%; REMOVIDO - Deixa o flexbox controlar */
+            text-align: left;
+            padding: 20px;
+        }
+
+        .etapa-box h3 {
+            text-align: center;
+        }
+
+        /* ======= BOX ATENÇÃO ======= */
+        .box-atencao {
+            text-align: center;
+        }
+
+        .box-atencao h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .box-atencao p {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        /* ======= BOX LOCAL ======= */
+        .box-local {
+            text-align: center;
+        }
+
+        .box-local h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .box-local p {
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ======= BOX WHATSAPP ======= */
+        .box-whatsapp p.whatsapp-info {
+            margin-top: 15px;
+            font-size: 1em;
+        }
+
+        /* ======= BOTÕES ======= */
+        .btn-inscricao, .btn-whatsapp, .btn-atencao {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s, background 0.3s;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .btn-inscricao {
+            background: #ffcc00;
+            color: #000;
+        }
+
+        .btn-inscricao:hover {
+            background: #ffd633;
+            transform: translateY(-3px);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: #fff;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1ebe5d;
+            transform: translateY(-3px);
+        }
+
+        .btn-atencao {
+            background: #ffcc00;
+            color: #000;
+        }
+
+        .btn-atencao:hover {
+            background: #ffd633;
+            transform: translateY(-3px);
+        }
+
+        /* ======= RODAPÉ ======= */
+        .footer-dinamico {
+            background: #111;
+            color: #ffcc00;
+            text-align: center;
+            padding: 20px;
+            font-size: 1em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-dinamico::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: slide 3s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .footer-dinamico p {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+        }
+
+        /* ======= MEDIA QUERIES (AJUSTES ESPECÍFICOS PARA TELAS PEQUENAS) ======= */
+        @media (max-width: 768px) {
+            /* HEADER: Empilha logos e título */
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 10px;
+            }
+            .logo-left {
+                order: 1; /* Logo esquerda vem primeiro */
+                margin-bottom: 10px;
+            }
+            .logo-right {
+                order: 3; /* Logo direita vem por último */
+                margin-top: 10px;
+            }
+            .header-title {
+                order: 2; /* Título fica no meio */
+                width: 100%;
+                margin: 10px 0;
+                font-size: 1.3em; /* Reduz um pouco o tamanho da fonte */
+            }
+
+            /* ETAPAS: Cada caixa ocupa 100% da largura */
+            .etapa-box {
+                flex: 1 1 100%; /* Força 100% de largura */
+            }
+
+            /* INSCRIÇÃO: Empilha texto e imagem */
+            .inscricao {
+                flex-direction: column;
+                text-align: center;
+            }
+            .inscricao-texto, .inscricao-imagem {
+                flex-basis: 100%;
+            }
+
+            /* Ajustes gerais de padding para economizar espaço */
+            .box, .box-valor, .box-whatsapp, .etapa-box, .box.video-container, .inscricao, .box-atencao, .box-local {
+                padding: 15px;
+                margin: 15px 0;
+            }
+            .container {
+                width: 95%; /* Usa um pouco mais de espaço na tela */
+                padding: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Ajustes finos para telas muito pequenas */
+            .btn-inscricao, .btn-whatsapp, .btn-atencao {
+                padding: 10px 20px;
+                font-size: 0.9em;
+                width: 100%; /* Botão ocupa toda a largura */
+            }
+            .valor-principal {
+                font-size: 1.8em;
+            }
+            .box-atencao h2, .box-local h2 {
+                font-size: 1.5em;
+            }
+            .etapa-box h3 {
+                font-size: 1.3em;
+            }
+            .header-title {
+                font-size: 1.1em;
+            }
+            .logo-left, .logo-right {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CABEÇALHO -->
+    <header>
+        <img src="Design sem nome.png" alt="Logo Esquerda" class="logo-left">
+        <div class="header-title">Caravana The Send 2026 Curitiba/PR</div>
+        <img src="logo-completo-amarelo.png" alt="Logo Direita" class="logo-right">
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="container">
+        <main>
+            <!-- O restante do seu conteúdo HTML permanece EXATAMENTE o mesmo -->
+            <!-- TEXTO SOBRE O EVENTO -->
+            <div class="box">
+                <h2>O que é o The Send 2026?</h2>
+                <p>O The Send existe para MOBILIZAR e DESPERTAR nossa Geração para viver a Grande Comissão de forma prática e transformadora.</p>
+                <p>O The Send nasceu em 2019 como um movimento global de mobilização para o cumprimento da Grande Comissão (Mc 16:15), surgindo da união de ministérios distintos que decidiram colaborar em prol de uma mesma missão.</p>
+                <p>Por 12 horas ininterruptas, reúne adoração, intercessão, conscientização sobre diferentes campos missionários e compromissos práticos para impactar essas áreas. Não é apenas um evento, mas uma convocação ao engajamento real. Para que cada pessoa diga SIM ao envio de Deus, seja para as nações, para sua cidade, para sua escola, para seu trabalho ou para a sua própria família.</p>
+            </div>
+
+            <!-- VÍDEO -->
+            <div class="box video-container">
+                <iframe src="https://www.youtube.com/embed/iiIfz8_TXhM" title="Apresentação do Evento" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <!-- INSCRIÇÃO -->
+            <section class="inscricao">
+                <div class="inscricao-texto">
+                    <h2>Caso não tiver feito a inscrição para o The Send 2026, faça aqui!!</h2>
+                    <p>Garanta sua vaga e participe do The Send 2026 em Curitiba/PR. Clique no botão abaixo para fazer sua inscrição e receber todas as informações necessárias.</p>
+                    <a href="https://www.sympla.com.br/evento/the-send-brasil-2026-curitiba/3072734?share_id=copiarlink" target="_blank" class="btn-inscricao">Fazer Inscrição</a>
+                </div>
+                <div class="inscricao-imagem">
+                    <img src="68b9be40ee6a1-lg.png" alt="Local do Evento">
+                </div>
+            </section>
+
+            <!-- BOX VALOR -->
+            <div class="box-valor">
+                <h2>Valor da Caravana</h2>
+                <div class="valor-principal">R$ 400,00</div>
+                <div class="condicoes-lista">
+                    <p><strong>Condição 1:</strong> Entrada de R$ 120,00 e restante em até 3x (Falar com a Organização para essa condição)</p>
+                    <p><strong>Condição 2:</strong> Pagamento no cartão: à vista ou dividido em até 12x, repassando os juros.</p>
+                    <p><strong>Condição 3:</strong> Pagamento por PIX ou à vista em dinheiro.</p>
+                </div>
+            </div>
+
+            <!-- ETAPAS EM 3 COLUNAS -->
+            <section class="etapas">
+                <div class="etapa-box">
+                    <h3>Etapa 1 - Inscrição no The Send</h3>
+                    <p>A primeira etapa é realizar a inscrição no evento. <strong>Atenção:</strong> as vagas se esgotam rapidamente, então não deixe para a última hora! Após a inscrição, fique atento ao arquivo PDF gerado, pois você precisará dele para a próxima etapa.</p>
+                </div>
+                <div class="etapa-box">
+                    <h3>Etapa 2 - Condições de Pagamento</h3>
+                    <p>Após realizar a inscrição no evento, entre em contato com a organização para definir as condições de pagamento da caravana. <strong>Atenção:</strong> só será possível entrar no grupo da caravana mediante o envio do comprovante de inscrição no The Send e do pagamento completo ou da entrada. Em caso de dúvidas, entre em contato com a organização.</p>
+                </div>
+                <div class="etapa-box">
+                    <h3>Etapa Final - Dia do Evento</h3>
+                    <p>Acompanhe abaixo as informações sobre o dia do evento:</p>
+                    <ul>
+                        <li><strong>Saída de Andradina:</strong> Sexta-feira, 19 de setembro, às 19h00.</li>
+                        <li><strong>Retorno:</strong> Domingo, 21 de setembro, aproximadamente 23h00.</li>
+                        <li><strong>Local de Saída:</strong> Escola Municipal de Cultura (EMC) – Andradina/SP</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- WHATSAPP -->
+            <div class="box-whatsapp">
+                <h2>Entre em Contato pelo WhatsApp</h2>
+                <p class="whatsapp-info">Dúvidas? Fale diretamente conosco através do WhatsApp. Clique no botão abaixo para iniciar a conversa.</p>
+                <!-- LEMBRETE: Atualize o número de telefone no link abaixo! -->
+                <a href="https://wa.me/5591999999999" target="_blank" class="btn-whatsapp">WhatsApp</a>
+            </div>
+
+            <!-- BOX ATENÇÃO -->
+            <div class="box-atencao">
+                <h2>Atenção!</h2>
+                <p>Não deixe para fazer sua inscrição na última hora! As vagas são limitadas e a caravana depende da inscrição de cada participante.</p>
+            </div>
+
+            <!-- BOX LOCAL -->
+            <div class="box-local">
+                <h2>Local do Evento</h2>
+                <p>Curitiba/PR - The Send 2026</p>
+                <div class="map-container">
+                    <!-- LEMBRETE: Cole o link correto do Google Maps aqui! -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18..." allowfullscreen></iframe>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer class="footer-dinamico">
+        <p>© 2025 Caravana The Send 2026. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
